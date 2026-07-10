@@ -2,17 +2,23 @@ pipeline {
     agent any
 
     stages {
+
         stage('Clone') {
             steps {
-                echo 'Cloning Project'
-                sh 'pwd'
-                sh 'ls'
+                echo 'Getting latest code'
             }
         }
 
-        stage('Build') {
+        stage('Build Docker Image') {
             steps {
-                echo 'Build Completed Successfully'
+                sh 'docker build -t studentapp:v1 .'
+            }
+        }
+
+        stage('Run Container') {
+            steps {
+                sh 'docker rm -f studentweb || true'
+                sh 'docker run -d --name studentweb -p 8080:80 studentapp:v1'
             }
         }
     }

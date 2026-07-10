@@ -2,9 +2,15 @@ pipeline {
     agent any
 
     stages {
+        stage('Clone') {
+            steps {
+                echo 'Cloning Project'
+            }
+        }
+
         stage('Build') {
             steps {
-                echo 'Hello Jenkins Pipeline!'
+                echo 'Build Completed Successfully'
             }
         }
     }

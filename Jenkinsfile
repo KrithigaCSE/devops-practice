@@ -5,6 +5,8 @@ pipeline {
         stage('Clone') {
             steps {
                 echo 'Cloning Project'
+                sh 'pwd'
+                sh 'ls'
             }
         }
 
